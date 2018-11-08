@@ -1,3 +1,4 @@
 module Main where
 main =
-      putStrLn "Hello"
+      putStrLn "Hello" >>
+      putStrLn "World"
