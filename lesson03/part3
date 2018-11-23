@@ -1,0 +1,61 @@
+f = \k -> if k == 0
+          then k + 10
+          else k * 2
+          
+f (f 0)
+
+-------------------------------- subst 'f' def
+
+f ((\k -> if k == 0
+          then k + 10
+          else k * 2) 0)
+
+-------------------------------- beta-reduce
+
+f (if 0 == 0
+   then 0+10
+   else 0*2)
+
+-------------------------------- equality 
+
+f (if True
+   then 0+10
+   else 0*2)
+
+-------------------------------- addition
+
+f (if True
+   then 10
+   else 0*2)
+
+-------------------------------- reduce if-then-else
+
+f 10
+
+-------------------------------- subst 'f' def
+
+(\k -> if k == 0
+          then k + 10
+          else k * 2) 10
+
+-------------------------------- beta-reduce
+
+if 10 == 0
+then 10+10
+else 10*2
+
+-------------------------------- equality
+
+if False
+then 10+10
+else 10*2
+
+-------------------------------- multiplication
+
+if False
+then 10+10
+else 20
+
+-------------------------------- reduce if-then-else
+
+20
